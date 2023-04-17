@@ -1,7 +1,4 @@
 <div *ngIf="album">
-    <p>Puedes modificar este album: {{album.title }}</p>
-    <app-formulario
-        [album]="album"
-        [isEditMode]="true"
-    ></app-formulario>
+  <p>Puedes modificar este album: {{ album.title }}</p>
+  <app-formulario [album]="album" [isEditMode]="true"></app-formulario>
 </div>

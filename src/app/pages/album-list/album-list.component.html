@@ -2,7 +2,6 @@
   <div class="album-list" *ngIf="albums">
     <app-single
       [textClass]="textClass"
-      
       *ngFor="
         let album of albums | filter : inputValue | orderByYear : yearFilter
       "

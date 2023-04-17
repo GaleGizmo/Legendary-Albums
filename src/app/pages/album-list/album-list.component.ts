@@ -11,13 +11,12 @@ import { AlbumI } from 'src/app/core/services/album/models/album.model';
 export class AlbumListComponent implements OnInit {
   public albums?: AlbumI[];
   public inputValue: string = '';
- public yearFilter: Number=2023
- public textClass:string="list"
+  public yearFilter: Number = 2023;
+  public textClass: string = 'list';
   constructor(private albumService: AlbumService) {}
 
   public ngOnInit(): void {
     this.getAlbums();
-    
   }
 
   public getAlbums() {
@@ -25,7 +24,4 @@ export class AlbumListComponent implements OnInit {
       this.albums = albums;
     });
   }
-
-
-
 }

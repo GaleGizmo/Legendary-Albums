@@ -108,21 +108,19 @@ export class FormularioComponent implements OnInit {
       length: new FormControl(this.album?.length || '', [notNegativeLength()]),
     });
   }
-  
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files[0];
-      this.albumService.uploadImage(file).subscribe(response => {
+
+  public onFileChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length) {
+      const file = target.files[0];
+      this.albumService.uploadImage(file).subscribe((response) => {
         this.uploadedImageUrl = response.url;
-        
-        
-       if (this.albumForm){
-        this.albumForm.patchValue({ cover: this.uploadedImageUrl});
-        // this.imageUrl=response.url
-        // console.log(this.imageUrl);
-        
-       }
+
+        if (this.albumForm) {
+          this.albumForm.patchValue({ cover: this.uploadedImageUrl });
+          
+        }
       });
     }
   }
-  }
+}

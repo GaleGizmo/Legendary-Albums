@@ -15,21 +15,21 @@ export class RandomAlbumComponent implements OnInit {
   ) {}
 
   public album?: AlbumI;
-public textClass:string="home"
+  public textClass: string = 'home';
   public allTitles?: string[] = [];
   public lastTimeExcuted?: Date;
 
   ngOnInit(): void {
     const albumTitle = localStorage.getItem('albumTitle');
     if (albumTitle) {
-      // this.album = JSON.parse(album);
       
-      this.albumService.getAlbumByTitle(JSON.parse(albumTitle)).subscribe((album) => {
-       
-        this.album = album;
-        console.log(this.album)}
-     )
-      
+
+      this.albumService
+        .getAlbumByTitle(JSON.parse(albumTitle))
+        .subscribe((album) => {
+          this.album = album;
+          
+        });
     }
     this.getAllTitlesAndShowOne();
   }
@@ -50,13 +50,12 @@ public textClass:string="home"
       const randomAlbum: string =
         albumTitles[Math.floor(Math.random() * albumTitles.length)];
       localStorage.setItem('lastTimeExcuted', hoy.toString());
-      console.log(randomAlbum);
+      
 
       this.albumService.getAlbumByTitle(randomAlbum).subscribe((album) => {
-       
         this.album = album;
         localStorage.setItem('albumTitle', JSON.stringify(randomAlbum));
-        console.log(album);
+        
       });
     }
   }

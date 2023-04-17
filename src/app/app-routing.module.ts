@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-album/add-album.module').then(m => m.AddAlbumModule)
   },
   {
-    path: 'edit-album/:id',
+    path: 'edit-album/:title',
     loadChildren: () => import('./pages/edit-album/edit-album.module').then(m => m.EditAlbumModule)
   },
   {

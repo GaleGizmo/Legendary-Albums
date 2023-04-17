@@ -81,7 +81,9 @@
           {{ genre }}
         </option>
       </select>
-      <p class="b-form__element detail">Puedes seleccionar varios géneros usando Ctrl</p>
+      <p class="b-form__element detail">
+        Puedes seleccionar varios géneros usando Ctrl
+      </p>
     </div>
     <div class="b-form__element">
       <label for="cover">Portada: </label>
@@ -89,12 +91,19 @@
         class="input"
         type="file"
         id="cover"
-       
         (change)="onFileChange($event)"
       />
-      
     </div>
-    <img *ngIf="uploadedImageUrl" width="150px" [src]="uploadedImageUrl" alt="Preview" />
+    <img 
+    *ngIf="!uploadedImageUrl&&album?.cover" 
+    width="150px" 
+    [src]="album?.cover" alt="">
+    <img
+      *ngIf="uploadedImageUrl"
+      width="150px"
+      [src]="uploadedImageUrl"
+      alt="Preview"
+    />
   </div>
   <div class="b-form__side">
     <div class="b-form__element">

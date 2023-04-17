@@ -1,5 +1,6 @@
 .header{
     height: 50px;
+    
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -24,4 +25,9 @@
 }
 .link:hover{
     color: var(--hover)
+}
+@media (max-width: 480px) {
+    .header{
+        font-size: 2.5vw;
+    }
 }

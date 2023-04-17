@@ -15,25 +15,15 @@ export class EditAlbumComponent {
     private activatedRoute: ActivatedRoute,
     private albumService: AlbumService
   ) {
-    // this.activatedRoute.params
-    //   .pipe(
-    //     switchMap((params) =>
-    //       this.albumService.getAlbumByTitle(params['title'])
-    //     )
-    //   )
-    //   .subscribe((album) => {
-    //     this.album = album;
-    //     ;
-        
-    //   });
+   
     this.activatedRoute.params.subscribe((params) => {
       const albumTitle = params['title'];
-      this.albumService
-        .getAlbumByTitle(albumTitle)
-        .subscribe((album) => {(this.album = album)});
+      console.log(albumTitle);
+      
+      this.albumService.getAlbumByTitle(albumTitle).subscribe((album) => {
+        this.album = album;
+      });
     });
     console.log(this.album);
   }
-  
-  
 }
