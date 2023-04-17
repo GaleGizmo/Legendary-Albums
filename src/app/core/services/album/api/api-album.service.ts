@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlbumI, ApiAlbumI, ApiAuthorI, AuthorI } from '../models/album.model';
-const API_URL='http://localhost:8000'
+// const API_URL='http://localhost:8000'
+const API_URL='https://legendary-api.vercel.app'
 @Injectable({
   providedIn: 'root'
 })
