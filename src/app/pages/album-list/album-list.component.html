@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="album-list" *ngIf="albums">
+    <app-single
+      [textClass]="textClass"
+      
+      *ngFor="
+        let album of albums | filter : inputValue | orderByYear : yearFilter
+      "
+      [albumShown]="album"
+    ></app-single>
+  </div>
+  <div class="filters">
+    <div>
+      <p>Buscar álbum:</p>
+      <input class="filters__search" [(ngModel)]="inputValue" />
+    </div>
+    <div class="filters__year">
+      <p>Año seleccionado: {{ yearFilter }}</p>
+      <input
+        class="filters__year--input"
+        type="range"
+        min="1910"
+        max="2023"
+        [(ngModel)]="yearFilter"
+      />
+    </div>
+  </div>
+</div>

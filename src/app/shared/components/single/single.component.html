@@ -1,0 +1,27 @@
+
+<div
+    *ngIf="albumShown"
+    [ngClass]="'albumIn-'+textClass"
+    
+>
+    <img
+        class="album__image"
+        [src]="albumShown.cover"
+    >
+    <div class="album__info">
+        <p
+            [ngClass]="'album__title-'+textClass"
+        >{{ albumShown.title }}</p>
+        <p [ngClass]="'album__artist-'+textClass">{{ albumShown.artist }}</p>
+        
+        
+    </div>
+    <button
+            [ngClass]="'album__details-'+textClass"
+            (click)="navigateToDetail(albumShown.title)"
+        >
+           <span> Detalles del Album</span>
+        </button>
+    
+</div>
+

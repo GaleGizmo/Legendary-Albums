@@ -1,0 +1,170 @@
+<form
+  class="b-form"
+  *ngIf="albumForm"
+  [formGroup]="albumForm"
+  (ngSubmit)="handleAlbum()"
+>
+  <div clas="b-form__side">
+    <div class="b-form__element">
+      <label for="title">Titulo: </label>
+      <input
+        class="input"
+        type="text"
+        id="title"
+        size="30"
+        placeholder="Título del álbum"
+        formControlName="title"
+      />
+      <div
+        *ngIf="
+          !albumForm.get('title')?.valid && albumForm.get('title')?.touched
+        "
+        class="control__error"
+      >
+        <p>El título es obligatorio</p>
+      </div>
+    </div>
+    <div class="b-form__element">
+      <label for="artist">Artista: </label>
+      <input
+        class="input"
+        type="text"
+        id="artist"
+        size="30"
+        placeholder="Autor del álbum"
+        formControlName="artist"
+      />
+      <div
+        *ngIf="
+          !albumForm.get('artist')?.valid && albumForm.get('artist')?.touched
+        "
+        class="control__error"
+      >
+        <p>El artista es obligatorio</p>
+      </div>
+    </div>
+    <div class="b-form__element">
+      <label for="year">Año: </label>
+      <input
+        class="input"
+        type="number"
+        id="year"
+        placeholder="Año de publicación"
+        formControlName="year"
+      />
+      <div
+        *ngIf="!albumForm.get('year')?.valid && albumForm.get('year')?.touched"
+        class="control__error"
+      >
+        <p *ngIf="albumForm.get('year')?.errors?.['min']">
+          El año debe ser posterior a 1910
+        </p>
+        <p *ngIf="albumForm.get('year')?.errors?.['max']">
+          El año debe ser como mínimo el actual
+        </p>
+
+        <p *ngIf="albumForm.get('year')?.errors?.['required']">
+          El año es obligatorio
+        </p>
+      </div>
+    </div>
+    <div class="b-form__element">
+      <label for="genre">Género: </label>
+      <select
+        class="input"
+        id="genre"
+        placeholder="Género"
+        formControlName="genre"
+        multiple
+      >
+        <option *ngFor="let genre of genresOptions" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+      <p class="b-form__element detail">Puedes seleccionar varios géneros usando Ctrl</p>
+    </div>
+    <div class="b-form__element">
+      <label for="cover">Portada: </label>
+      <input
+        class="input"
+        type="file"
+        id="cover"
+       
+        (change)="onFileChange($event)"
+      />
+      
+    </div>
+    <img *ngIf="uploadedImageUrl" width="150px" [src]="uploadedImageUrl" alt="Preview" />
+  </div>
+  <div class="b-form__side">
+    <div class="b-form__element">
+      <label for="songs">Canciones: </label>
+      <textarea
+        class="input"
+        size="30"
+        id="songs"
+        placeholder="Introduce las canciones separadas por comas"
+        formControlName="songs"
+      ></textarea>
+    </div>
+
+    <div class="b-form__element">
+      <label for="producer">Productor: </label>
+      <input
+        class="input"
+        size="30"
+        type="text"
+        id="producer"
+        placeholder="Productor"
+        formControlName="producer"
+      />
+    </div>
+    <div class="b-form__element">
+      <label for="label">Sello: </label>
+      <input
+        class="input"
+        type="text"
+        id="label"
+        placeholder="Sello"
+        formControlName="label"
+      />
+    </div>
+    <div class="b-form__element">
+      <label for="description">Descripción: </label>
+      <textarea
+        class="input"
+        id="description"
+        placeholder="Información relevante sobre el álbum"
+        formControlName="description"
+      ></textarea>
+    </div>
+
+    <div class="b-form__element">
+      <label for="length">Duración: </label>
+      <input
+        class="input"
+        type="text"
+        id="length"
+        placeholder="Duración en mminutos"
+        formControlName="length"
+      />
+      <p
+        class="control__error"
+        *ngIf="albumForm.get('length')?.errors?.['negativeLength']"
+      >
+        No se permiten duraciones negativas
+      </p>
+    </div>
+    <button type="submit">
+      {{ isEditMode ? "Confirmar cambios" : "Añadir álbum" }}
+    </button>
+  </div>
+
+  <div *ngIf="hasFormError" class="control__error">
+    Hay errores en el formulario, revísalo
+  </div>
+
+  <div *ngIf="errorMessage" class="control__error">
+    {{ errorMessage }}
+  </div>
+</form>

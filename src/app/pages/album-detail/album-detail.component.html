@@ -1,0 +1,71 @@
+<div class="detail-container">
+  <div *ngIf="album" class="album">
+    <figure  class="album__figure">
+    <img [src]="album.cover" class="album__image" />
+    <figcaption *ngIf="album.description" class="album__description p-bottom">
+        {{ album.description }}
+    </figcaption>
+</figure>
+
+    <div class="album__description">
+      <p class="m-bottom"> <span class="album__field-name ">Título:</span> {{ album.title }}</p>
+      <p class="m-bottom"><span class="album__field-name">Autor:</span> {{ album.artist }}</p>
+      <p class="m-bottom"><span class="album__field-name">Género:
+      </span> {{ album.genre }}</p>
+      <p class="m-bottom" *ngIf="album.year"><span class="album__field-name">Año: </span>{{ album.year }}</p>
+
+      <p class="m-bottom" *ngIf="album.length"><span class="album__field-name">Duración: </span> {{ album.length }}</p>
+      <div *ngIf="album.songs">
+        <span class="album__field-name m-bottom"> Canciones:</span>
+        <ul>
+          <li  class="m-bottom"*ngFor="let song of album.songs">{{ song }}</li>
+        </ul>
+      </div>
+      <p  class="m-bottom" *ngIf="album.producer"><span class="album__field-name">Productor: </span>{{ album.producer }}</p>
+      <p  class="m-bottom" *ngIf="album.label"><span class="album__field-name">Sello: </span>{{ album.label }}</p>
+    
+
+      <div class="album__button">
+        <button class="album__button--edit"(click)="editThisAlbum()"><span>Editar Álbum</span></button>
+        <button
+          class="album__button--remove"
+          (click)="removeAlbum(album.title)"
+        >
+         <span> Borrar Álbum</span>
+        </button>
+      </div>
+    </div>
+    
+  </div>
+  <div *ngIf="author&&!edit" class="album author">
+    <figure class="album__figure">
+    <img [src]="author.image" class="album__image" alt={{author.name}}/>
+    <figcaption class="album__description p-bottom" >{{ author.description }}</figcaption>
+  </figure>
+  <div class="album__description p-bottom">
+    <p><span class="album__field-name">Nombre: </span> {{ author.name }}</p>
+    <div *ngIf="author.components && author.components > 0">
+      <ul>
+        <li *ngFor="let component of author.componentsNames">
+          {{ component }}
+        </li>
+      </ul>
+    </div>
+    <p><span class="album__field-name">País:</span> {{ author.country }}</p>
+    <p *ngIf="author.genre && author.genre.length > 0">
+      <span class="album__field-name"> Estilo musical: </span>{{ author.genre }}
+    </p>
+    
+    <div *ngIf="author.discography">
+      <span class="album__field-name"> Discografía:</span>
+      <ul>
+        <li *ngFor="let disco of author.discography">{{ disco }}</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div *ngIf="edit">
+    <!-- <app-formulario [album]="album" [isEditMode]="true"></app-formulario> -->
+    <app-edit-album></app-edit-album>
+  </div>
+</div>

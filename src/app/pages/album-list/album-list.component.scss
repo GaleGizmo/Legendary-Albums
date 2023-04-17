@@ -1,0 +1,40 @@
+.container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin: 2% 5%;
+  overflow-y: hidden;
+  
+}
+
+.album-list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  justify-content: space-between;
+ 
+  
+  
+}
+.filters{
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  position: fixed;
+  right: 80px;
+  width: 220px;
+  &__search{
+    margin-top: 5px;
+    width: 80%
+  }
+  &__year--input {
+    width: 80%;
+    height: 30px;
+  }
+
+}
+// .filters__year--input {
+//   width: 80%;
+//   height: 30px;
+// }

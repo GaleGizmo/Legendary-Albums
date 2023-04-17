@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans');
+
+*{
+    margin:0;
+    font-family: 'Josefin Sans', sans-serif;
+    box-sizing: border-box;
+}
+:root {
+    --background-text-color:  #e98400;
+    --border-color: green;
+    --field-name: #4c043d;
+    --error: #850f0f;
+    --hover: #ca127a;
+  }
+
+// img{
+//     max-width: 100%;
+//     max-height: 100%
+// }
