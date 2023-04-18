@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiAlbumService } from './api/api-album.service';
-import { Observable, map, filter, tap, catchError, throwError,switchMap } from 'rxjs';
+import { Observable, map, filter, tap, catchError, throwError,switchMap, BehaviorSubject } from 'rxjs';
 import { AlbumI, ApiAlbumI, ApiAuthorI, AuthorI } from './models/album.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,14 +10,24 @@ import { HttpClient } from '@angular/common/http';
 export class AlbumService {
   constructor(private apiAlbumService: ApiAlbumService, private http:HttpClient) {}
 
+//   private albumTitleSubject = new BehaviorSubject<string | null>(null);
+//   albumTitle$ = this.albumTitleSubject.asObservable();
+
+// updateDailyAlbum(albumTitle: string) {
+//     localStorage.setItem('albumTitle', JSON.stringify(albumTitle));
+//     this.albumTitleSubject.next(albumTitle);
+//   }
+public isLoading:boolean=false
   public getAlbums(): Observable<AlbumI[]> {
+    this.isLoading=true
     return this.apiAlbumService.getApiAlbums().pipe(
       filter((albums: ApiAlbumI[]) => {
         return albums.length > 0;
       }),
       map((albums: ApiAlbumI[]) => this.transformAlbums(albums)),
-      tap((albums: AlbumI[]) => {
-        console.log(albums);
+      tap(() => {
+        
+        this.isLoading=false
       })
     );
   }
@@ -29,6 +39,7 @@ export class AlbumService {
   }
 
   public getAlbumAuthorByTitle(title: string): Observable<{ album: AlbumI; author: AuthorI | undefined }> {
+    this.isLoading=true
     return this.apiAlbumService.getApiAlbumByTitle(title).pipe(
       map((apiAlbum: ApiAlbumI) => this.transformAlbum(apiAlbum)),
       switchMap(album => {
@@ -42,7 +53,8 @@ export class AlbumService {
             return { album, author: albumAuthor };
           })
         );
-      })
+      }),
+      tap(() => this.isLoading = false)
     );
   }
   public createAlbum(body: AlbumI): Observable<AlbumI> {

@@ -17,14 +17,30 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
     const dailyAlbum = localStorage.getItem('albumTitle');
     if (dailyAlbum) {
-      this.albumService
-        .getAlbumByTitle(JSON.parse(dailyAlbum))
+     
+      this.loadAlbum(dailyAlbum)
+    } 
+  }
+  // ngOnInit(): void {
+  //   this.albumService.albumTitle$.subscribe((albumTitle) => {
+  //     if (albumTitle) {
+  //       this.albumService.getAlbumByTitle(albumTitle).subscribe((album) => {
+  //         const spotifyUrl = `https://open.spotify.com/embed?uri=spotify:album:${album.spotify}`;
+  //         this.spotiUrl = this.sanitizer.bypassSecurityTrustResourceUrl(spotifyUrl);
+  //       });
+  //     }
+  //   });
+  // }
+public loadAlbum(albumTitle:string){
+  this.albumService
+        .getAlbumByTitle(JSON.parse(albumTitle))
         .subscribe((album) => {
           this.spotiUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
             `https://open.spotify.com/embed?uri=spotify:album:${album.spotify}`
           );
-          console.log(this.spotiUrl);
+          
         });
-    }
-  }
+
+}
+  
 }

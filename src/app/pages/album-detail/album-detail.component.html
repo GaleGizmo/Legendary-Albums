@@ -1,4 +1,5 @@
 <div class="detail-container">
+  <div *ngIf="albumService.isLoading"><h1>Cargando detalles...</h1></div>
   <div *ngIf="album" class="album">
     <figure class="album__figure">
       <img [src]="album.cover" class="album__image" />

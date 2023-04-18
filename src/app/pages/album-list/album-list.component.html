@@ -1,4 +1,6 @@
+
 <div class="container">
+  <div *ngIf="albumService.isLoading"><h1>Cargando albumes...</h1></div>
   <div class="album-list" *ngIf="albums">
     <app-single
       [textClass]="textClass"

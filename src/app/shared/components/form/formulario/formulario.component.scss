@@ -69,3 +69,30 @@ textarea {
   font-size: 1vw;
   max-width: 20%;
 }
+@media (max-width:480px){
+  .b-form{
+flex-direction: column;
+margin: 5% 5% 0  5%
+  }
+  .b-form__element{
+    flex-direction: column;
+  }
+  .input{
+    font-size: 14px;
+  }
+  label{
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .detail{
+    max-width: 100%;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  textarea{
+    width: 100%;
+  }
+  .b-form__side{
+    max-width: 100%;
+  }
+}

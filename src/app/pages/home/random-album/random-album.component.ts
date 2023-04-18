@@ -22,13 +22,10 @@ export class RandomAlbumComponent implements OnInit {
   ngOnInit(): void {
     const albumTitle = localStorage.getItem('albumTitle');
     if (albumTitle) {
-      
-
       this.albumService
         .getAlbumByTitle(JSON.parse(albumTitle))
         .subscribe((album) => {
           this.album = album;
-          
         });
     }
     this.getAllTitlesAndShowOne();
@@ -50,12 +47,11 @@ export class RandomAlbumComponent implements OnInit {
       const randomAlbum: string =
         albumTitles[Math.floor(Math.random() * albumTitles.length)];
       localStorage.setItem('lastTimeExcuted', hoy.toString());
-      
 
       this.albumService.getAlbumByTitle(randomAlbum).subscribe((album) => {
         this.album = album;
         localStorage.setItem('albumTitle', JSON.stringify(randomAlbum));
-        
+        // this.albumService.updateDailyAlbum(randomAlbum);
       });
     }
   }

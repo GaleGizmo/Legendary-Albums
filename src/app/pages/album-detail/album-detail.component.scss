@@ -92,6 +92,12 @@ span:hover {
   color: #ffffff;
   cursor: pointer
 }
+h1{
+  position: fixed;
+  color:var(--background-text-color);
+  bottom: 100px;
+  left: 45vw;
+}
 @media (max-width:480px) {
     .detail-container{
         flex-direction: column;
@@ -105,4 +111,11 @@ span:hover {
             width: 95%
         }
     }
+    h1{
+      position: fixed;
+      top: 40vh;
+      left: 25vw;
+      font-size: 18px;
+      bottom: unset;
+     }
 }

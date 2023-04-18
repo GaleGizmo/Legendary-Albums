@@ -13,7 +13,7 @@ export class AlbumListComponent implements OnInit {
   public inputValue: string = '';
   public yearFilter: Number = 2023;
   public textClass: string = 'list';
-  constructor(private albumService: AlbumService) {}
+  constructor(public albumService: AlbumService) {}
 
   public ngOnInit(): void {
     this.getAlbums();

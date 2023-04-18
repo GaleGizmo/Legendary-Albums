@@ -20,7 +20,7 @@ export class AlbumDetailComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private albumService: AlbumService,
+    public albumService: AlbumService,
     private apiAlbumService: ApiAlbumService,
     private router: Router
   ) {
