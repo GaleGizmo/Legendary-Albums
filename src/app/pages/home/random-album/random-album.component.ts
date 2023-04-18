@@ -11,7 +11,7 @@ import { AlbumI } from 'src/app/core/services/album/models/album.model';
 export class RandomAlbumComponent implements OnInit {
   constructor(
     private apiAlbumService: ApiAlbumService,
-    private albumService: AlbumService
+    public albumService: AlbumService
   ) {}
 
   public album?: AlbumI;
@@ -21,6 +21,7 @@ export class RandomAlbumComponent implements OnInit {
 
   ngOnInit(): void {
     const albumTitle = localStorage.getItem('albumTitle');
+    this.albumService.isLoading=true
     if (albumTitle) {
       this.albumService
         .getAlbumByTitle(JSON.parse(albumTitle))

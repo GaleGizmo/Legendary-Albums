@@ -35,7 +35,9 @@ public isLoading:boolean=false
   public getAlbumByTitle(title: string): Observable<AlbumI> {
     return this.apiAlbumService
       .getApiAlbumByTitle(title)
-      .pipe(map((apiAlbum: ApiAlbumI) => this.transformAlbum(apiAlbum)));
+      .pipe(tap(() => this.isLoading = true),
+        map((apiAlbum: ApiAlbumI) => this.transformAlbum(apiAlbum)),
+        tap(() => this.isLoading = false),);
   }
 
   public getAlbumAuthorByTitle(title: string): Observable<{ album: AlbumI; author: AuthorI | undefined }> {
