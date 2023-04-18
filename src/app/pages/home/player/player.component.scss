@@ -4,3 +4,8 @@
     margin-left: 2vw;
     
 }
+@media (max-width:480px){
+    .container{
+        margin: 20px calc((100vw - 300px)/2);
+    }
+}

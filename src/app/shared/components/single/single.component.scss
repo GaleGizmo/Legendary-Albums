@@ -109,13 +109,23 @@ span:hover {
 .album__details-list{
   display: none;
 }
+.album__details-home{
+  display: none;
+}
+.album__title-home{
+  display: none;
+}
+.album__artist-home{
+  display: none;
+}
 img:hover{
   border: 2px solid var(--border-color);
   cursor: pointer;
 }
-// app-single{
-//   margin: 0 auto;
-//   flex: 1;
-// }
-
+span{
+  display: none;
+}
+.album__image{
+  width: 90vw
+}
 }
