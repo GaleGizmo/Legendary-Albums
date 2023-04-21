@@ -16,6 +16,7 @@
     font-size: 22px;
   }
   &__artist-home {
+    color: var(--artist-name);
     font-size: 20px;
   }
   &__title-list {
@@ -23,34 +24,10 @@
     font-size: 16px;
   }
   &__artist-list {
+    color: var(--artist-name);
     font-size: 14px;
   }
-  // &__details-list {
-  //   margin: 0 auto;
-  //   position: absolute;
-  //   bottom: 0;
-  //   border: none;
-  //   border-radius: 20px;
-  //   background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  //   transition: all 1.5s ease;
-    
-  //   font-weight: bold;
-  //   letter-spacing: 0.05rem;
-  //   padding: 0;
-  // }
-  // &__details-home {
-  //   margin: 0 auto;
-
-  //   border: none;
-
-  //   border-radius: 20px;
-  //   background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-  //   transition: all 1.5s ease;
-
-  //   font-weight: bold;
-  //   letter-spacing: 0.05rem;
-  //   padding: 0;
-  // }
+  
 
   &__image {
     width: auto;
@@ -69,8 +46,8 @@
   position: relative;
   
   width: 10vw;
-  margin: 0 7px;
-  height: 300px;
+  margin: 5px 7px ;
+  max-height: 300px;
   .album__image {
     border-radius: 7px;
     max-width: 100%;

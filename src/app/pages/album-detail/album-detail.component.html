@@ -27,7 +27,7 @@
       </p>
       <div *ngIf="album.songs">
         <span class="album__field-name m-bottom"> Canciones:</span>
-        <ul>
+        <ul class="m-bottom">
           <li class="m-bottom" *ngFor="let song of album.songs">{{ song }}</li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="author && !edit" class="album author">
+  <div *ngIf="author" class="album author">
     <figure class="album__figure">
       <img [src]="author.image" class="album__image" alt="{{ author.name }}" />
       <figcaption class="album__description p-bottom">
@@ -59,16 +59,18 @@
       </figcaption>
     </figure>
     <div class="album__description p-bottom">
-      <p><span class="album__field-name">Nombre: </span> {{ author.name }}</p>
-      <div *ngIf="author.components && author.components > 0">
-        <ul>
+      <p class="m-bottom"><span class="album__field-name">Nombre: </span> {{ author.name }}</p>
+      <div *ngIf="author.numberOfComponents && (author.numberOfComponents > 1)">
+        <span class="album__field-name"> Integrantes: </span>
+
+        <ul class="m-bottom">
           <li *ngFor="let component of author.componentsNames">
             {{ component }}
           </li>
         </ul>
       </div>
-      <p><span class="album__field-name">País:</span> {{ author.country }}</p>
-      <p *ngIf="author.genre && author.genre.length > 0">
+      <p class="m-bottom"><span class="album__field-name">País:</span> {{ author.country }}</p>
+      <p class="m-bottom" *ngIf="author.genre && author.genre.length > 0">
         <span class="album__field-name"> Estilo musical: </span
         >{{ author.genre }}
       </p>

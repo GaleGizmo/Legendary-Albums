@@ -8,6 +8,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { OrderByYearPipe } from './pipes/order-by-year.pipe';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CloudinaryModule } from '@cloudinary/ng';
+import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
 
 
 
@@ -16,7 +17,8 @@ import { CloudinaryModule } from '@cloudinary/ng';
     FormularioComponent,
     SingleComponent,
     FilterPipe,
-    OrderByYearPipe
+    OrderByYearPipe,
+    OrderByTitlePipe
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { CloudinaryModule } from '@cloudinary/ng';
     FormularioComponent,
     SingleComponent,
     FilterPipe,
-    OrderByYearPipe
+    OrderByYearPipe,
+    OrderByTitlePipe
   ]
 })
 export class SharedModule { }

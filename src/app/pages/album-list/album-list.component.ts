@@ -13,6 +13,7 @@ export class AlbumListComponent implements OnInit {
   public inputValue: string = '';
   public yearFilter: Number = 2023;
   public textClass: string = 'list';
+  public sortAscending: boolean=true;
   constructor(public albumService: AlbumService) {}
 
   public ngOnInit(): void {
@@ -23,5 +24,8 @@ export class AlbumListComponent implements OnInit {
     this.albumService.getAlbums().subscribe((albums: AlbumI[]) => {
       this.albums = albums;
     });
+  }
+  public changeSortOrder() {
+    this.sortAscending = !this.sortAscending;
   }
 }

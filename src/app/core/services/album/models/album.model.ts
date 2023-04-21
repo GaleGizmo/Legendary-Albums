@@ -30,7 +30,7 @@ export interface AlbumI {
 
 export interface ApiAuthorI {
   name: string;
-  components: number;
+  numberOfComponents: number;
   componentsNames: string[];
   genre: Genres;
   country: string;
@@ -41,7 +41,7 @@ export interface ApiAuthorI {
 }
 export interface AuthorI {
   name: string;
-  components?: number;
+  numberOfComponents?: number;
   componentsNames?: string[];
   genre?: Genres;
   country?: string;

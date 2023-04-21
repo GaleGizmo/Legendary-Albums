@@ -5,8 +5,8 @@
     <app-single
       [textClass]="textClass"
       *ngFor="
-        let album of albums | filter : inputValue | orderByYear : yearFilter
-      "
+        let album of albums | filter : inputValue | orderByYear : yearFilter | orderByTitle:sortAscending
+      " [ngClass]="{'highlight': album.year === yearFilter}"
       [albumShown]="album"
     ></app-single>
   </div>
@@ -16,7 +16,7 @@
       <input class="filters__search" [(ngModel)]="inputValue" />
     </div>
     <div class="filters__year">
-      <p>Año seleccionado: {{ yearFilter }}</p>
+      <p>Publicados hasta: {{ yearFilter }}</p>
       <input
         class="filters__year--input"
         type="range"
@@ -24,6 +24,9 @@
         max="2023"
         [(ngModel)]="yearFilter"
       />
+    </div>
+    <div>
+      <button (click)="changeSortOrder()">{{sortAscending?"Ordenar Z-A":"Ordenar A-Z"}}</button>
     </div>
   </div>
 </div>
