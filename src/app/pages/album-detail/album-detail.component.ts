@@ -33,7 +33,7 @@ export class AlbumDetailComponent {
       .subscribe(({ album, author }) => {
         this.album = album;
         this.author = author;
-        console.log(author);
+        
       });
   }
 

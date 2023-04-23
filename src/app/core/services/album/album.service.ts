@@ -48,7 +48,7 @@ public isLoading:boolean=false
         return this.apiAlbumService.getApiAuthors().pipe(
           map((apiAuthors: ApiAuthorI[]) => apiAuthors.map(apiAuthor => this.transformAuthor(apiAuthor))),
           map(authors => {
-            console.log(album, authors);
+           
             
             const albumAuthor = authors.find(author => author.name === album.artist);
             
