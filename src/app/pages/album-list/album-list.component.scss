@@ -36,11 +36,19 @@
   
 }
 
-h1 {
+@keyframes spin{
+  from{
+    transform: rotate(0deg);
+  }
+  to {transform: rotate(360deg)
+}
+}
+.vinyl{
+  animation: spin 2s linear infinite;
   position: fixed;
-  color: white;
   bottom: 50vh;
   left: 45vw;
+  width: 10vw;
 }
 .highlight {
   background-color: var(--album-highlight);
@@ -91,11 +99,11 @@ button:hover {
       width: 100%;
     }
   }
-  h1 {
+  .vinyl {
     position: fixed;
     top: 40vh;
     left: 25vw;
-    font-size: 18px;
+    
     bottom: unset;
   }
 }

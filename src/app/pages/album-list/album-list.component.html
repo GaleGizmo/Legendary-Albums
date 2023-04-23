@@ -1,6 +1,6 @@
 
 <div class="container">
-  <div *ngIf="albumService.isLoading"><h1>Cargando albumes...</h1></div>
+  <div *ngIf="albumService.isLoading"><img class="vinyl" src="https://res.cloudinary.com/dwv0trjwd/image/upload/v1682265151/vinilo-bgtransparent_qtd8q3.png" alt=""></div>
   <div class="album-list" *ngIf="albums">
     <app-single
       [textClass]="textClass"

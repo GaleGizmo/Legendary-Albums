@@ -103,12 +103,8 @@ span:hover {
   color: #ffffff;
   cursor: pointer
 }
-h1{
-  position: fixed;
-  color:white;
-  bottom: 50vh;
-  left: 45vw;
-}
+
+
 @keyframes spin{
   from{
     transform: rotate(0deg);
@@ -117,7 +113,11 @@ h1{
 }
 }
 .vinyl{
-  animation: 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  bottom: 50vh;
+  left: 45vw;
+  width: 10vw;
 }
 @media (max-width:480px) {
     .detail-container{
