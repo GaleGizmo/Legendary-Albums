@@ -40,17 +40,17 @@ export class RandomAlbumComponent implements OnInit {
   }
 
   public showRandomAlbum(albumTitles: string[]) {
-    const hoy = new Date();
-    const seedDate = '2023-04-23';
+    const today = new Date();
+    const seedDate = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate()
     const rng = seedrandom(seedDate);
     const lastTimeExcuted = localStorage.getItem('lastTimeExcuted');
     if (
       !lastTimeExcuted ||
-      hoy.getDate() !== new Date(lastTimeExcuted).getDate()
+      today.getDate() !== new Date(lastTimeExcuted).getDate()
     ) {
       const randomAlbum: string =
         albumTitles[Math.floor(rng() * albumTitles.length)];
-      localStorage.setItem('lastTimeExcuted', hoy.toString());
+      localStorage.setItem('lastTimeExcuted', today.toString());
 
       this.albumService.getAlbumByTitle(randomAlbum).subscribe((album) => {
         this.album = album;
