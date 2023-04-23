@@ -38,6 +38,10 @@
   &__image:hover{
     cursor: pointer;
     border: 3px solid var(--border-color);
+  &__info:hover{
+    cursor: pointer;
+    border: 3px solid var(--border-color);
+  }
   }
 }
 .albumIn-list {
