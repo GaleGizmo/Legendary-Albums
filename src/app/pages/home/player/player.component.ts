@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AlbumService } from 'src/app/core/services/album/album.service';
 @Component({
@@ -6,20 +6,24 @@ import { AlbumService } from 'src/app/core/services/album/album.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
   spotiUrl: SafeResourceUrl = '';
-
+  
   constructor(
     private albumService: AlbumService,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
+    window.addEventListener('storage', this.onStorageChange.bind(this));
     const dailyAlbum = localStorage.getItem('albumTitle');
     if (dailyAlbum) {
      
       this.loadAlbum(dailyAlbum)
     } 
+  }
+  ngOnDestroy(): void {
+    window.removeEventListener('storage', this.onStorageChange.bind(this));
   }
   // ngOnInit(): void {
   //   this.albumService.albumTitle$.subscribe((albumTitle) => {
@@ -42,5 +46,10 @@ public loadAlbum(albumTitle:string){
         });
 
 }
-  
+private onStorageChange(event: StorageEvent) {
+  if (event.key === 'albumTitle') {
+    const albumTitle = event.newValue;
+   
+  }
+}
 }

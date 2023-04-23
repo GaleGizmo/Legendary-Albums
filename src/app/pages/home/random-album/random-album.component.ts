@@ -1,7 +1,8 @@
 import { AlbumService } from './../../../core/services/album/album.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { ApiAlbumService } from 'src/app/core/services/album/api/api-album.service';
 import { AlbumI } from 'src/app/core/services/album/models/album.model';
+import * as seedrandom from 'seedrandom';
 
 @Component({
   selector: 'app-random-album',
@@ -13,7 +14,7 @@ export class RandomAlbumComponent implements OnInit {
     private apiAlbumService: ApiAlbumService,
     public albumService: AlbumService
   ) {}
-
+ 
   public album?: AlbumI;
   public textClass: string = 'home';
   public allTitles?: string[] = [];
@@ -21,7 +22,7 @@ export class RandomAlbumComponent implements OnInit {
 
   ngOnInit(): void {
     const albumTitle = localStorage.getItem('albumTitle');
-    this.albumService.isLoading=true
+    this.albumService.isLoading = true;
     if (albumTitle) {
       this.albumService
         .getAlbumByTitle(JSON.parse(albumTitle))
@@ -40,18 +41,21 @@ export class RandomAlbumComponent implements OnInit {
 
   public showRandomAlbum(albumTitles: string[]) {
     const hoy = new Date();
+    const seedDate = '2023-04-23';
+    const rng = seedrandom(seedDate);
     const lastTimeExcuted = localStorage.getItem('lastTimeExcuted');
     if (
       !lastTimeExcuted ||
       hoy.getDate() !== new Date(lastTimeExcuted).getDate()
     ) {
       const randomAlbum: string =
-        albumTitles[Math.floor(Math.random() * albumTitles.length)];
+        albumTitles[Math.floor(rng() * albumTitles.length)];
       localStorage.setItem('lastTimeExcuted', hoy.toString());
 
       this.albumService.getAlbumByTitle(randomAlbum).subscribe((album) => {
         this.album = album;
         localStorage.setItem('albumTitle', JSON.stringify(randomAlbum));
+        
         // this.albumService.updateDailyAlbum(randomAlbum);
       });
     }
