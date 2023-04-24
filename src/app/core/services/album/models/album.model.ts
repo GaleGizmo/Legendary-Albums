@@ -1,6 +1,6 @@
 export interface ApiAlbumI {
   createdAt?: string;
-  updatedAt?:string
+  updatedAt?: string;
   title: string;
   artist: string;
   genre: Genres[];
@@ -12,7 +12,7 @@ export interface ApiAlbumI {
   _id?: string;
   description: string;
   length: number;
-  spotify:string
+  spotify: string;
 }
 export interface AlbumI {
   title: string;
@@ -25,7 +25,7 @@ export interface AlbumI {
   producer?: string;
   description?: string;
   length?: number;
-  spotify?: string
+  spotify?: string;
 }
 
 export interface ApiAuthorI {
@@ -48,20 +48,20 @@ export interface AuthorI {
   discography?: string[];
   image?: string;
   description?: string;
-  
 }
 export type Genres =
-  | 'Rock'
-  | 'Pop'
-  | 'Folk'
-  | 'Punk'
-  | 'Rap'
-  | 'Techno'
-  | 'Disco'
   | 'Blues'
-  | 'Soul'
+  | 'Disco'
+  | 'Folk'
+  | 'Funk'
   | 'Heavy'
   | 'Hip hop'
-  | 'Worldbeat'
-  | 'Funk'
-  | 'R&B';
+  | 'Pop'
+  | 'Punk'
+  | 'R&B'
+  | 'Rap'
+  | 'Reggae'
+  | 'Rock'
+  | 'Soul'
+  | 'Techno'
+  | 'Worldbeat';

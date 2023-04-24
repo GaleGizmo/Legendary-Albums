@@ -3,7 +3,7 @@
   <img class="vinyl" src="https://res.cloudinary.com/dwv0trjwd/image/upload/v1682265151/vinilo-bgtransparent_qtd8q3.png" alt=""></div>
   <div *ngIf="album" class="album">
     <figure class="album__figure">
-      <img [src]="album.cover" class="album__image" />
+      <img *ngIf="album.cover" [src]="album.cover" class="album__image" />
       <figcaption *ngIf="album.description" class="album__description p-bottom">
         {{ album.description }}
       </figcaption>
@@ -27,7 +27,7 @@
       <p class="m-bottom">
         <span class="album__field-name">Autor:</span> {{ album.artist }}
       </p>
-      <p class="m-bottom">
+      <p *ngIf="album.genre" class="m-bottom">
         <span class="album__field-name">Género: </span> {{ album.genre }}
       </p>
       <p class="m-bottom" *ngIf="album.year">

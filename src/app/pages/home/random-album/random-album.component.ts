@@ -30,11 +30,20 @@ export class RandomAlbumComponent implements OnInit {
           this.album = album;
         });
     }
-    this.getAllTitlesAndShowOne();
+    const cachedTitles = localStorage.getItem('albumTitles');
+    if (cachedTitles) {
+      this.allTitles = JSON.parse(cachedTitles);
+      this.showRandomAlbum(this.allTitles?.filter(t=>t)||[]);
+    } else {
+      this.getAllTitlesAndShowOne();
+    }
   }
+
+
   public getAllTitlesAndShowOne() {
     this.apiAlbumService.getAllTitles().subscribe((titles: string[]) => {
       this.allTitles = titles;
+      localStorage.setItem('albumTitles', JSON.stringify(titles));
       this.showRandomAlbum(this.allTitles);
     });
   }

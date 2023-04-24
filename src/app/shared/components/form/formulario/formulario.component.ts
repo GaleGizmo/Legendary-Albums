@@ -55,16 +55,20 @@ export class FormularioComponent implements OnInit {
       this.hasFormError = true;
     }
   }
+  public stringToArray(str: string): string[] {
+    return str.split(',').map((value) => value.trim());
+  }
 
   private createAlbum() {
     const songsCheck = this.albumForm?.get('songs');
     if (songsCheck?.value && !Array.isArray(songsCheck?.value)) {
-      const songsString: string = songsCheck?.value;
-      const songsArray: string[] = songsString
-        .split(',')
-        .map((value) => value.trim());
+      const songsArray: string[] = this.stringToArray(songsCheck?.value);
+      // const songsArray: string[] = songsString
+      //   .split(',')
+      //   .map((value) => value.trim());
       songsCheck?.setValue(songsArray);
     }
+
     this.hasFormError = false;
     this.albumService.createAlbum(this.albumForm?.value).subscribe(
       (album) => {
@@ -82,6 +86,13 @@ export class FormularioComponent implements OnInit {
   private editAlbum() {
     if (!this.album) {
       return;
+    }
+    if (this.album) {
+      const newSongs = this.albumForm?.get('songs')?.value;
+
+      const newSongsArray: string[] = this.stringToArray(newSongs);
+
+      this.albumForm?.get('songs')?.setValue(newSongsArray);
     }
     this.albumService
       .editAlbum(this.albumForm?.value, this.album.title)
@@ -118,7 +129,6 @@ export class FormularioComponent implements OnInit {
 
         if (this.albumForm) {
           this.albumForm.patchValue({ cover: this.uploadedImageUrl });
-          
         }
       });
     }
