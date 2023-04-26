@@ -9,6 +9,8 @@ import { OrderByYearPipe } from './pipes/order-by-year.pipe';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
+import { AutoresizeDirective } from '../core/services/Directives/autoresize.directive';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -18,7 +20,8 @@ import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
     SingleComponent,
     FilterPipe,
     OrderByYearPipe,
-    OrderByTitlePipe
+    OrderByTitlePipe,
+    
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,10 @@ import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
     ReactiveFormsModule,
     RouterModule,
     NgxDropzoneModule,
-    CloudinaryModule
+    CloudinaryModule,
+    CoreModule,
+    
+    
   ],
   exports:[
     FormularioComponent,

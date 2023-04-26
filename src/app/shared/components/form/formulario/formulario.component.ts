@@ -30,7 +30,8 @@ export class FormularioComponent implements OnInit {
   public uploadedImageUrl: string | undefined;
   public errorMessage: string = '';
   public imgSrc: string = '';
-
+  public textSongs: string = '';
+  public textDescription: string = '';
   public files: File[] = [];
 
   constructor(
@@ -118,7 +119,10 @@ export class FormularioComponent implements OnInit {
       songs: new FormControl(this.album?.songs || ''),
       length: new FormControl(this.album?.length || '', [notNegativeLength()]),
     });
+    this.textSongs = this.albumForm?.get('songs')?.value;
+  this.textDescription = this.albumForm?.get('description')?.value;
   }
+  
 
   public onFileChange(event: Event) {
     const target = event.target as HTMLInputElement;

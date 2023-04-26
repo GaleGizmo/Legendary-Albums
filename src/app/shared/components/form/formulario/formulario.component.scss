@@ -4,7 +4,7 @@
   text-align: center;
   margin: 6% 15% auto 15%;
   line-height: 1.2;
-  padding: 2% 2% 8% 2%;
+  padding: 2%;
   background-color: var(--background-text-color);
   border: 3px solid var(--border-color);
   border-radius: 10px;
@@ -44,7 +44,8 @@
   color: var(--error);
 }
 button {
-  margin-top: 16%;
+  margin-top: 15%;
+  margin-left: 20px;
   width: 150px;
   height: 60px;
   border: 3px solid var(--border-color);
@@ -68,6 +69,10 @@ textarea {
 .detail {
   font-size: 1vw;
   max-width: 20%;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
 }
 
 

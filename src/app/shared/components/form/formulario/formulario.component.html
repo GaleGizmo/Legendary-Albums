@@ -108,7 +108,7 @@
   <div class="b-form__side">
     <div class="b-form__element">
       <label for="songs">Canciones: </label>
-      <textarea
+      <textarea appAutoresize [(ngModel)]="textSongs"
         class="input"
         size="30"
         id="songs"
@@ -140,7 +140,7 @@
     </div>
     <div class="b-form__element">
       <label for="description">Descripción: </label>
-      <textarea
+      <textarea appAutoresize [(ngModel)]="textDescription"
         class="input"
         id="description"
         placeholder="Información relevante sobre el álbum"
@@ -154,7 +154,7 @@
         class="input"
         type="text"
         id="length"
-        placeholder="Duración en mminutos"
+        placeholder="Duración en minutos"
         formControlName="length"
       />
       <p
@@ -164,9 +164,12 @@
         No se permiten duraciones negativas
       </p>
     </div>
+    <div class="buttons">
     <button type="submit">
       {{ isEditMode ? "Confirmar cambios" : "Añadir álbum" }}
     </button>
+    <button [routerLink]="['/albums-list']">Cancelar</button>
+  </div>
   </div>
 
   <div *ngIf="hasFormError" class="control__error">
