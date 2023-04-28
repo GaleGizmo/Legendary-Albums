@@ -14,7 +14,7 @@ export class RandomAlbumComponent implements OnInit {
     private apiAlbumService: ApiAlbumService,
     public albumService: AlbumService
   ) {}
- 
+
   public album?: AlbumI;
   public textClass: string = 'home';
   public allTitles?: string[] = [];
@@ -64,6 +64,7 @@ export class RandomAlbumComponent implements OnInit {
       this.albumService.getAlbumByTitle(randomAlbum).subscribe((album) => {
         this.album = album;
         localStorage.setItem('albumTitle', JSON.stringify(randomAlbum));
+       
         
         // this.albumService.updateDailyAlbum(randomAlbum);
       });

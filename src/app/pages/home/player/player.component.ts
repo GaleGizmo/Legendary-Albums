@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, Input} from '@angular/core';
+import { Component, OnInit, OnDestroy,  NgZone} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AlbumService } from 'src/app/core/services/album/album.service';
+
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
@@ -8,22 +9,28 @@ import { AlbumService } from 'src/app/core/services/album/album.service';
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   spotiUrl: SafeResourceUrl = '';
-  
+  dailyAlbumTitle?:string;
+  private readonly storageListener:(event: StorageEvent)=>void=this.onStorageChange.bind(this);
   constructor(
     private albumService: AlbumService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private ngZone:NgZone
   ) {}
 
   ngOnInit(): void {
-    window.addEventListener('storage', this.onStorageChange.bind(this));
-    const dailyAlbum = localStorage.getItem('albumTitle');
-    if (dailyAlbum) {
+    
+    window.addEventListener('storage', this.storageListener);
+    const albumTitle = localStorage.getItem('albumTitle');
+    if (albumTitle!==null) {this.dailyAlbumTitle = albumTitle;
+    
+      this.loadAlbum(this.dailyAlbumTitle);
+    
      
-      this.loadAlbum(dailyAlbum)
-    } 
-  }
+    
+  }}
   ngOnDestroy(): void {
-    window.removeEventListener('storage', this.onStorageChange.bind(this));
+    
+    window.removeEventListener('storage', this.storageListener);
   }
   // ngOnInit(): void {
   //   this.albumService.albumTitle$.subscribe((albumTitle) => {
@@ -47,9 +54,13 @@ public loadAlbum(albumTitle:string){
 
 }
 private onStorageChange(event: StorageEvent) {
-  if (event.key === 'albumTitle') {
-    const albumTitle = event.newValue;
-   
+  
+  if (event.key === 'albumTitle' && event.newValue !== this.dailyAlbumTitle) {
+    if (event.newValue!==null)
+    this.dailyAlbumTitle = event.newValue;
+    this.ngZone.run(() => {
+      this.loadAlbum(this.dailyAlbumTitle!);
+    });
   }
 }
 }
