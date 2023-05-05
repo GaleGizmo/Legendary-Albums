@@ -2,13 +2,14 @@
 <div class="container">
   <div *ngIf="albumService.isLoading"><img class="vinyl" src="https://res.cloudinary.com/dwv0trjwd/image/upload/v1682265151/vinilo-bgtransparent_qtd8q3.png" alt=""></div>
   <div class="album-list" *ngIf="albums">
-    <app-single
+    <app-single 
       [textClass]="textClass"
       *ngFor="
         let album of albums | filter : inputValue | orderByYear : yearFilter | orderByTitle:sortAscending
       " [ngClass]="{'highlight': album.year === yearFilter}"
       [albumShown]="album"
     ></app-single>
+    
   </div>
   <div class="filters">
     <div>
