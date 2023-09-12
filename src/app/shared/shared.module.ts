@@ -6,12 +6,13 @@ import { RouterModule } from '@angular/router';
 import { SingleComponent } from './components/single/single.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { OrderByYearPipe } from './pipes/order-by-year.pipe';
-import { MatDialogModule } from '@angular/material/dialog';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
 import { AutoresizeDirective } from '../core/services/Directives/autoresize.directive';
 import { CoreModule } from '../core/core.module';
-import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+
+
 
 @NgModule({
   declarations: [
@@ -20,24 +21,25 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     FilterPipe,
     OrderByYearPipe,
     OrderByTitlePipe,
-    ConfirmModalComponent,
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    NgxDropzoneModule,
     CloudinaryModule,
     CoreModule,
-    MatDialogModule,
+    
+    
   ],
-  exports: [
+  exports:[
     FormularioComponent,
     SingleComponent,
     FilterPipe,
     OrderByYearPipe,
-    OrderByTitlePipe,
-    ConfirmModalComponent
-  ],
+    OrderByTitlePipe
+  ]
 })
-export class SharedModule {}
+export class SharedModule { }
