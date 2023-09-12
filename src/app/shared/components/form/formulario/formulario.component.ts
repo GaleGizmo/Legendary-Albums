@@ -11,9 +11,7 @@ import {
   FormArray,
 } from '@angular/forms';
 import { notNegativeLength } from '../validators/form-validators';
-import { NgxDropzoneComponent } from 'ngx-dropzone/public_api';
-import { NgxDropzoneChangeEvent } from 'ngx-dropzone/public_api';
-import { CloudinaryImage } from '@cloudinary/url-gen';
+
 
 @Component({
   selector: 'app-formulario',
@@ -57,7 +55,11 @@ export class FormularioComponent implements OnInit {
     }
   }
   public stringToArray(str: string): string[] {
-    return str.split(',').map((value) => value.trim());
+    if (typeof str === 'string') {
+      return str.split(',').map((value) => value.trim());
+    } else {
+      return str;
+    }
   }
 
   private createAlbum() {
@@ -90,6 +92,8 @@ export class FormularioComponent implements OnInit {
     }
     if (this.album) {
       const newSongs = this.albumForm?.get('songs')?.value;
+      console.log(newSongs);
+      
 
       const newSongsArray: string[] = this.stringToArray(newSongs);
 

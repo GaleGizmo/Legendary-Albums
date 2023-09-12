@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { AlbumService } from 'src/app/core/services/album/album.service';
@@ -7,6 +8,7 @@ import {
   AlbumI,
   AuthorI,
 } from 'src/app/core/services/album/models/album.model';
+import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-album-detail',
@@ -19,6 +21,7 @@ export class AlbumDetailComponent {
   public author?: AuthorI;
 
   constructor(
+    private dialog:MatDialog,
     private activatedRoute: ActivatedRoute,
     public albumService: AlbumService,
     private apiAlbumService: ApiAlbumService,
@@ -44,13 +47,20 @@ export class AlbumDetailComponent {
     
   }
   public removeAlbum(title: string) {
-    const confirmDelete = window.confirm(
-      '¿Seguro que quieres borrar el album?'
-    );
-    if (confirmDelete) {
-      this.apiAlbumService
-        .deleteApiAlbum(title)
-        .subscribe(() => this.router.navigate(['../albums-list']));
-    } else return;
+    // const confirmDelete = window.confirm(
+    //   '¿Seguro que quieres borrar el album?'
+    // );
+    // if (confirmDelete) {
+    //   this.apiAlbumService
+    //     .deleteApiAlbum(title)
+    //     .subscribe(() => this.router.navigate(['../albums-list']));
+    // } else return;
+    const dialologRef = this.dialog.open(ConfirmModalComponent)
+
+    dialologRef.afterClosed().subscribe(result=>{
+      if (result){
+        this.apiAlbumService.deleteApiAlbum(title).subscribe(()=>this.router.navigate(['../albums-list']))
+      }
+    })
   }
 }
