@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { SingleComponent } from './components/single/single.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { OrderByYearPipe } from './pipes/order-by-year.pipe';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { CloudinaryModule } from '@cloudinary/ng';
+
+
 import { OrderByTitlePipe } from './pipes/order-by-title.pipe';
-import { AutoresizeDirective } from '../core/services/Directives/autoresize.directive';
+
 import { CoreModule } from '../core/core.module';
+import { ModalComponent } from './components/modal/modal/modal.component';
 
 
 
@@ -21,6 +22,7 @@ import { CoreModule } from '../core/core.module';
     FilterPipe,
     OrderByYearPipe,
     OrderByTitlePipe,
+    ModalComponent,
     
   ],
   imports: [
@@ -28,8 +30,8 @@ import { CoreModule } from '../core/core.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxDropzoneModule,
-    CloudinaryModule,
+
+   
     CoreModule,
     
     
@@ -39,7 +41,8 @@ import { CoreModule } from '../core/core.module';
     SingleComponent,
     FilterPipe,
     OrderByYearPipe,
-    OrderByTitlePipe
+    OrderByTitlePipe,
+    ModalComponent
   ]
 })
 export class SharedModule { }

@@ -1,28 +1,32 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { filter, switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { AlbumService } from 'src/app/core/services/album/album.service';
 import { ApiAlbumService } from 'src/app/core/services/album/api/api-album.service';
 import {
   AlbumI,
   AuthorI,
 } from 'src/app/core/services/album/models/album.model';
+import { ModalService } from './../../core/services/modal/modal.service';
 
 @Component({
   selector: 'app-album-detail',
   templateUrl: './album-detail.component.html',
   styleUrls: ['./album-detail.component.scss'],
 })
-export class AlbumDetailComponent {
+export class AlbumDetailComponent implements OnInit, OnDestroy {
   public album?: AlbumI;
   public edit?: boolean = false;
   public author?: AuthorI;
+  private routerEventSubscription?: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public albumService: AlbumService,
     private apiAlbumService: ApiAlbumService,
-    private router: Router
+    private router: Router,
+    public modalService: ModalService
   ) {
     this.activatedRoute.params
       .pipe(
@@ -33,24 +37,40 @@ export class AlbumDetailComponent {
       .subscribe(({ album, author }) => {
         this.album = album;
         this.author = author;
-        
       });
   }
 
-  public editThisAlbum(title:string) {
-    // this.edit = true;
-    this.router.navigate(['edit-album',title])
+  ngOnInit() {
+    this.routerEventSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.modalService.showSubject.value) {
+          this.modalService.close();
+        }
+      });
+  }
 
-    
+  ngOnDestroy() {
+    if (this.routerEventSubscription) {
+      this.routerEventSubscription.unsubscribe();
+    }
   }
+
+  public editThisAlbum(title:string) {
+    this.router.navigate(['edit-album',title])
+  }
+
   public removeAlbum(title: string) {
-    const confirmDelete = window.confirm(
-      '¿Seguro que quieres borrar el album?'
-    );
-    if (confirmDelete) {
-      this.apiAlbumService
-        .deleteApiAlbum(title)
-        .subscribe(() => this.router.navigate(['../albums-list']));
-    } else return;
+    this.modalService.open('deleteAlbumModal')
   }
+
+  public confirmDelete(title: string | undefined) {
+    if (title) {
+      this.apiAlbumService.deleteApiAlbum(title)
+        .subscribe(() => {
+          this.modalService.close();
+          this.router.navigate(['../albums-list']);
+        });
+    }
+  } 
 }

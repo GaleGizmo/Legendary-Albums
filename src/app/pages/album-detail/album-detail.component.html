@@ -89,4 +89,10 @@
     <app-formulario [album]="album" [isEditMode]="true"></app-formulario>
     <app-edit-album></app-edit-album>
   </div> -->
+  <app-modal>
+    <h2>¿Seguro que quieres borrar el álbum?</h2>
+    <button class="button-modal" (click)="confirmDelete(album?.title)">Confirmar</button>
+    <button class="button-modal"  (click)="modalService.close()">Cancelar</button>
+  </app-modal>
+  
 </div>

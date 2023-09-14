@@ -11,9 +11,8 @@ import {
   FormArray,
 } from '@angular/forms';
 import { notNegativeLength } from '../validators/form-validators';
-import { NgxDropzoneComponent } from 'ngx-dropzone/public_api';
-import { NgxDropzoneChangeEvent } from 'ngx-dropzone/public_api';
-import { CloudinaryImage } from '@cloudinary/url-gen';
+
+
 
 @Component({
   selector: 'app-formulario',

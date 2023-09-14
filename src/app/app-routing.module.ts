@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -10,10 +11,12 @@ const routes: Routes = [
   {
     
     path: 'albums-list',
+   
     loadChildren: () => import('./pages/album-list/album-list.module').then(m => m.AlbumListModule)
   },
   {
     path: 'album-detail/:title',
+   
     loadChildren: () => import('./pages/album-detail/album-detail.module').then(m => m.AlbumDetailModule)
   },
   {
@@ -40,6 +43,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+ 
 })
 export class AppRoutingModule { }

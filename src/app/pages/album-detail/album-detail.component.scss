@@ -77,7 +77,9 @@ button {
   font-size: 1rem;
   font-weight: 550;
 }
-
+.button-modal{
+  width: 60%;
+}
 button:hover {
   background: orange;
   color: white;
@@ -125,9 +127,7 @@ button span:hover {
         gap: 20px;
     }
     .album__description{
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 10px auto;
     }
     .album{
         max-width: 100%;
@@ -144,5 +144,8 @@ button span:hover {
       left: 40vw;
       width: 20vw;
       bottom: unset;
+    }
+    h2{
+      font-size: 12px;
     }
 }
